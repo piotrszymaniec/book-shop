@@ -67,4 +67,11 @@ html {
 }
 .cart .book .remove-from-cart {
   order: 4;
+}
+
+form .invalid {
+  border: 2px solid red;
+}
+form .validation-message {
+  color: red;
 }/*# sourceMappingURL=style.css.map */

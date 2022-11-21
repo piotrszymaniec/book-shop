@@ -12,21 +12,28 @@
 <body>
   <div class="wrapper">
     <h1>Order and Delivery</h1>
-    <form method="post">
+    <form novalidate="novalidate">
       <label for="client-name">Name:</label>
-      <input type="text" name="client-name" id="client-name" placeholder="Name" pattern="\w{4,}" required>
+      <input type="text" name="client-name" id="client-name" placeholder="Name" required>
       <label for="client-surname">Surname:</label>
-      <input type="text" name="client-surname" id="client-surname" placeholder="Surname" pattern="\w{5,}" required>
+      <input type="text" name="client-surname" id="client-surname" placeholder="Surname" required>
       <label for="delivery-date">Delivery date:</label>
       <input type="date" name="delivery-date" id="delivery-date" required>
       <fieldset>
         <legend>Adress:</legend>
         <label for="delivery-street">Street name:</label>
-        <input type="text" name="delivery-street" id="delivery-street" placeholder="Street name" pattern="^\\p{L}*$" required>
+        <input type="text" name="delivery-street" id="delivery-street" placeholder="Street name" required>
         <label for="delivery-house">House number:</label>
         <input type="number" name="delivery-house" id="delivery-house" min="1" required>
         <label for="delivery-flat-number">Flat number:</label>
-        <input type="text" name="delivery-flat-number" id="delivery-flat-number" pattern="\d+\-\d+" required>
+        <input type="text" name="delivery-flat-number" id="delivery-flat-number" required>
+      </fieldset>
+      <fieldset>
+        <legend>Payment:</legend>
+
+        <input type="radio" name="payment" id="credit-card" value="credit-card" checked><label for="credit-card">Credit
+          Card</label>
+        <input type="radio" name="payment" id="cash" value="cash"><label for="cash">Cash</label>
       </fieldset>
       <fieldset>
         <legend>Gift (optional)</legend>
@@ -42,7 +49,8 @@
       <button type="submit" name="submit" id="submit">Complete</button>
     </form>
   </div>
-  <script defer src="js/order.js"></script>
+  <script defer type="module" src="js/util.js"></script>
+  <script defer type="module" src="js/order.js"></script>
 </body>
 
 </html>

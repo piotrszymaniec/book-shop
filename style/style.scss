@@ -83,3 +83,17 @@ html {
     }
   }
 }
+
+form {
+  // input:invalid {
+  //   border: 1px solid red;
+  // }
+
+  .invalid {
+    border: 2px solid red;
+  }
+
+  .validation-message {
+    color: red;
+  }
+}
