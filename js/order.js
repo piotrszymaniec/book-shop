@@ -33,7 +33,7 @@ validationResult = validationResult && validateField(deliveryFlat, /\d+\[-]{,1}\
 
 function validateField(field, pattern) {
   field.addEventListener('blur', () => {
-    let msgEl = createElement('div', 'validation-message', 'The field is invalid')
+    // let msgEl = createElement('div', 'validation-message', 'The field is invalid')
     const result = pattern.test(field.value)
     console.log(field, ' result ', result);
     if (!result) {

@@ -1,6 +1,8 @@
 const app = document.createElement('div')
 app.setAttribute("id", "app")
+// app.append(createElement('h1', '', 'Best Bookstore'))
 document.body.append(app)
+
 const cartItems = []
 const cartIndex = 0;
 sessionStorage.setItem('CLIENT_ORDER', '')
