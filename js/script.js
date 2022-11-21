@@ -106,6 +106,12 @@ function removeFromCart(id) {
   console.log('Removing from cart', id)
   const itemIndex = cartItems.findIndex((item) => item.id == id)
   cartItems.splice(itemIndex, 1)
+
+}
+
+function saveOrder(array) {
+  const id = "CLIENT_ORDER"
+  localStorage.setItem(id, JSON.stringify(array))
 }
 
 function createCart(cartItems) {
@@ -114,16 +120,34 @@ function createCart(cartItems) {
   const cartItemsContainer = createElement('div', 'cart-container', 'Empty')
   cart.append(createElement('h2', 'cart-title', 'Cart'))
   cart.append(createElement('h4', 'cart-total-sum', '0'))
-  fragment.append(cart)
   cart.append(cartItemsContainer)
+  const confirmBtn = createElement('button', 'cart-confirm', 'Confirm')
+  confirmBtn.setAttribute('disabled', '')
+  confirmBtn.addEventListener('click', () => {
+    if (cartItems.length == 0) {
+
+    } else {
+      saveOrder(cartItems)
+      window.location.href = './order.html'
+    }
+  })
+  cart.append(confirmBtn)
+  fragment.append(cart)
   return fragment
 }
 
 function updateCart(cartItems = []) {
   const cartContainer = document.querySelector('.cart-container')
+  const confirmBtn = document.querySelector('.cart-confirm')
   cartContainer.textContent = ''
   const fragment = new DocumentFragment()
   let totalPriceSum = 0
+  if (cartItems.length > 0) {
+    //turn off cart confirm button    
+    confirmBtn.removeAttribute('disabled')
+  } else {
+    confirmBtn.setAttribute('disabled', '')
+  }
   cartItems.forEach(cartItem => {
     console.log(cartItem)
     totalPriceSum += cartItem.price
