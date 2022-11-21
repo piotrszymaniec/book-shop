@@ -1,16 +1,15 @@
 const app = document.createElement('div')
 app.setAttribute("id", "app")
 document.body.append(app)
-createCart(app)
-const cartContent = [
-  //   {
-  //   "author": "Douglas Crockford",
-  //   "imageLink": "../img/book_001.webp",
-  //   "title": "JavaScript: The Good Parts: The Good Parts",
-  //   "price": 30,
-  //   "description": "With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must"
-  // }
-]
+const cartItems = []
+// {
+//   "author": "Douglas Crockford",
+//   "imageLink": "../img/book_001.webp",
+//   "title": "JavaScript: The Good Parts: The Good Parts",
+//   "price": 30,
+//   "description": "With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must"
+// }
+
 
 function createElement(tag, className = '', content = '') {
   const el = document.createElement(tag)
@@ -42,9 +41,9 @@ function createBookElement({ author, imageLink, title, price, description }) {
   const addToCartBtn = createElement('button', 'add-to-cart', 'Add to Cart')
   addToCartBtn.addEventListener('click', () => {
     console.log('added ', title, ' to cart')
-    addToCart({ author, title, price }, cartContent)
-    console.log(cartContent)
-    updateCart(cartContent)
+    addToCart({ author, title, price }, cartItems)
+    console.log(cartItems)
+    updateCart(cartItems)
   })
   bookContainer.append(addToCartBtn)
 
@@ -59,8 +58,8 @@ function createCartElement({ author, imageLink, title, price }) {
   cartElement.append(createElement('div', 'price', price))
   const removeBtn = createElement('button', 'remove-from-cart', 'Remove')
   removeBtn.addEventListener('click', (e) => {
-    removeFromCart(cartContent, title)
-    updateCart()
+    removeFromCart(cartItems, title)
+    updateCart(cartItems)
   })
   cartElement.append(removeBtn)
 
@@ -75,41 +74,41 @@ function addBook(parentEl, book) {
   return parentEl.append(fragment)
 }
 
-function addToCart(item, cartContent) {
-  cartContent.push(item)
+function addToCart(item, cartItems) {
+  cartItems.push(item)
   console.log('Cart Contents:');
-  cartContent.forEach(orderItem => {
+  cartItems.forEach(orderItem => {
     console.log(orderItem);
   }
   )
 }
 
-function removeFromCart(cartContent, title) {
+function removeFromCart(cartItems, title) {
   console.log('Removing from cart. To implement')
 
 }
 
-function createCart(parentEl, cartContent) {
+function createCart(cartItems) {
   const fragment = new DocumentFragment()
   const cart = createElement('div', 'cart', '')
+  const cartItemsContainer = createElement('div', 'cart-container', 'Empty')
   cart.append(createElement('h2', 'cart-title', 'Cart'))
   fragment.append(cart)
+  fragment.append(cartItemsContainer)
+  return fragment
   parentEl.append(fragment)
-  updateCart(cartContent)
+  updateCart(cartItems)
 }
 
-function updateCart(cartContent = []) {
+function updateCart(cartItems = []) {
+  const cartContainer = document.querySelector('.cart-container')
+  cartContainer.textContent = ''
   const fragment = new DocumentFragment()
-  if (cartContent.length > 0) {
-    cartContent.forEach(cartItem => {
-      fragment.append(createCartElement(cartItem))
-      document.querySelector('.cart').append(fragment)
-    }
-    )
-  } else {
-    document.querySelector('.cart').textContent = 'Empty'
-  }
-
+  console.log(cartItems)
+  cartItems.forEach(cartItem => {
+    fragment.append(createCartElement(cartItem))
+    cartContainer.append(fragment)
+  })
 }
 
 
@@ -118,10 +117,14 @@ fetch('./data/books.json')
     return response.json();
   })
   .then(data => {
+    const bookContainer = createElement('div', 'book-container')
+    const fragment = new DocumentFragment()
     data.forEach(element => {
-      const bookContainer = new DocumentFragment()
       addBook(bookContainer, element)
       //show book row
-      app.append(bookContainer)
     });
+    fragment.append(bookContainer)
+    app.append(fragment)
+    app.append(createCart(data))
   });
+
