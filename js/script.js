@@ -33,8 +33,7 @@ function createBookElement({ author, imageLink, title, price, description }) {
   const addToCartBtn = createElement('button', 'add-to-cart', 'Add to Cart')
   addToCartBtn.addEventListener('click', () => {
     console.log('added ', title, ' to cart')
-    addToCart({ author, title, price }, cartItems)
-    console.log(cartItems)
+    addToCart({ id: cartItems.length, author, title, price }, cartItems)
     updateCart(cartItems)
   })
   bookContainer.append(addToCartBtn)
@@ -42,15 +41,15 @@ function createBookElement({ author, imageLink, title, price, description }) {
   return bookContainer
 }
 
-function createCartElement({ author, imageLink, title, price }) {
+function createCartElement({ id, author, title, price }) {
   const cartElement = createElement('div', 'book')
   // cartElement.append(createImg('imageLink', imageLink, title))
   cartElement.append(createElement('div', 'author', author))
   cartElement.append(createElement('div', 'title', title))
   cartElement.append(createElement('div', 'price', price))
   const removeBtn = createElement('button', 'remove-from-cart', 'Remove')
-  removeBtn.addEventListener('click', (e) => {
-    removeFromCart(cartItems, title)
+  removeBtn.addEventListener('click', () => {
+    removeFromCart(id)
     updateCart(cartItems)
   })
   cartElement.append(removeBtn)
@@ -75,9 +74,9 @@ function addToCart(item, cartItems) {
   )
 }
 
-function removeFromCart(cartItems, title) {
-  console.log('Removing from cart. To implement')
-
+function removeFromCart(id) {
+  console.log('Removing from cart.')
+  cartItems.splice(id, 1)
 }
 
 function createCart(cartItems) {
