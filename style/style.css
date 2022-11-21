@@ -12,6 +12,10 @@ html {
   display: none;
 }
 
+.book-container {
+  padding: 1em;
+}
+
 .book {
   position: relative;
   margin-bottom: 5rem;
@@ -55,6 +59,11 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
+}
+.cart .book .title::before,
+.cart .book .title::after {
+  content: '"';
 }
 .cart .book .title {
   font-size: 1em;
@@ -65,7 +74,6 @@ html {
   order: 2;
 }
 .cart .book .price {
-  padding: 1em;
   order: 3;
 }
 .cart .book .remove-from-cart {

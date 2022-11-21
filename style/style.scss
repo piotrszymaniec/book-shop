@@ -12,6 +12,10 @@ html {
   display: none;
 }
 
+.book-container {
+  padding: 1em;
+}
+
 .book {
   position: relative;
   margin-bottom: 5rem;
@@ -54,7 +58,7 @@ html {
     content: '$';
   }
 
-  ;
+
 
   .book {
     background-color: white;
@@ -64,11 +68,18 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+
+    .title::before,
+    .title::after {
+      content: '"'
+    }
 
     .title {
       font-size: 1em;
       font-weight: 500;
       order: 1;
+
       // min-width: fit-content;
     }
 
@@ -77,7 +88,6 @@ html {
     }
 
     .price {
-      padding: 1em;
       order: 3;
     }
 
