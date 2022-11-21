@@ -8,11 +8,28 @@ html {
   flex-direction: row;
 }
 
+.hidden {
+  display: none;
+}
+
 .book {
+  position: relative;
   margin-bottom: 5rem;
 }
 .book .title {
   font-size: 1.5em;
+}
+.book .popup {
+  position: absolute;
+  z-index: 10;
+  background-color: aliceblue;
+  bottom: 30px;
+  left: 50px;
+  padding: 1rem;
+}
+.book .popup .close-popup-x {
+  display: flex;
+  margin-left: auto;
 }
 .book .price {
   font-weight: 700;

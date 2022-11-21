@@ -7,7 +7,9 @@ const cartIndex = 0;
 function createElement(tag, className = '', content = '') {
   const el = document.createElement(tag)
   if (className) {
-    el.classList.add(className)
+    className.split(' ').forEach(cls =>
+      el.classList.add(cls)
+    )
   }
   el.textContent = content
   return el
@@ -20,6 +22,22 @@ function createImg(className, src, altName) {
   return imgEl
 }
 
+function createPopup(content) {
+  const el = createElement('div', 'popup hidden description')
+  const descr = createElement('div', 'description-content', content)
+  const closeCrossBtn = createElement('button', 'close-popup-x', '✖')
+  const closeBtn = createElement('button', 'close-popup-close', 'close')
+  closeBtn.addEventListener('click', () => {
+    el.classList.add('hidden')
+  })
+  closeCrossBtn.addEventListener('click', () => {
+    el.classList.add('hidden')
+  })
+  el.append(closeCrossBtn)
+  el.append(descr)
+  el.append(closeBtn)
+  return el
+}
 
 function createBookElement({ author, imageLink, title, price, description }) {
   const bookContainer = createElement('div', 'book')
@@ -27,9 +45,14 @@ function createBookElement({ author, imageLink, title, price, description }) {
   bookContainer.append(createElement('div', 'author', author))
   bookContainer.append(createElement('div', 'title', title))
   bookContainer.append(createElement('div', 'price', price))
-  bookContainer.append(createElement('div', 'description', description))
+  // const descriptionPopup = createElement('div', 'description popup hidden', description)
+  const popup = createPopup(description)
+  bookContainer.append(popup)
   const showMoreBtn = createElement('button', 'show-more', 'Show more...')
-  showMoreBtn.addEventListener('click', () => { console.log('show more clicked') })
+  showMoreBtn.addEventListener('click', () => {
+    popup.classList.remove('hidden')
+    console.log('show more clicked')
+  })
   bookContainer.append(showMoreBtn)
   const addToCartBtn = createElement('button', 'add-to-cart', 'Add to Cart')
   addToCartBtn.addEventListener('click', () => {
