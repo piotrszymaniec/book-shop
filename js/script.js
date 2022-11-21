@@ -2,14 +2,6 @@ const app = document.createElement('div')
 app.setAttribute("id", "app")
 document.body.append(app)
 const cartItems = []
-// {
-//   "author": "Douglas Crockford",
-//   "imageLink": "../img/book_001.webp",
-//   "title": "JavaScript: The Good Parts: The Good Parts",
-//   "price": 30,
-//   "description": "With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must"
-// }
-
 
 function createElement(tag, className = '', content = '') {
   const el = document.createElement(tag)
@@ -96,8 +88,6 @@ function createCart(cartItems) {
   fragment.append(cart)
   cart.append(cartItemsContainer)
   return fragment
-  parentEl.append(fragment)
-  updateCart(cartItems)
 }
 
 function updateCart(cartItems = []) {
