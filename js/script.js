@@ -18,6 +18,7 @@ function createElement(tag, className = '', content = '') {
 function createImg(className, src, altName) {
   const imgEl = createElement('img', className)
   imgEl.setAttribute('src', src)
+  imgEl.setAttribute('draggable', 'true')
   imgEl.setAttribute('alt', altName + 'book image')
   return imgEl
 }
@@ -41,7 +42,9 @@ function createPopup(content) {
 
 function createBookElement({ author, imageLink, title, price, description }) {
   const bookContainer = createElement('div', 'book')
-  bookContainer.append(createImg('imageLink', imageLink, title))
+  const bookImgContainer = createElement('div', 'img-container')
+  bookImgContainer.append(createImg('imageLink', imageLink, title))
+  bookContainer.append(bookImgContainer)
   bookContainer.append(createElement('div', 'author', author))
   bookContainer.append(createElement('div', 'title', title))
   bookContainer.append(createElement('div', 'price', price))
@@ -110,6 +113,7 @@ function createCart(cartItems) {
   const cart = createElement('div', 'cart', '')
   const cartItemsContainer = createElement('div', 'cart-container', 'Empty')
   cart.append(createElement('h2', 'cart-title', 'Cart'))
+  cart.append(createElement('h4', 'cart-total-sum', '0'))
   fragment.append(cart)
   cart.append(cartItemsContainer)
   return fragment
@@ -119,10 +123,14 @@ function updateCart(cartItems = []) {
   const cartContainer = document.querySelector('.cart-container')
   cartContainer.textContent = ''
   const fragment = new DocumentFragment()
+  let totalPriceSum = 0
   cartItems.forEach(cartItem => {
+    console.log(cartItem)
+    totalPriceSum += cartItem.price
     fragment.append(createCartElement(cartItem))
     cartContainer.append(fragment)
   })
+  document.querySelector('.cart-total-sum').textContent = totalPriceSum
 }
 
 
