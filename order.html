@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order and Delivery</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <h1>Order and Delivery</h1>
+    <form method="post">
+      <label for="client-name">Name:</label>
+      <input type="text" name="client-name" id="client-name" placeholder="Name" pattern="\w{4,}" required>
+      <label for="client-surname">Surname:</label>
+      <input type="text" name="client-surname" id="client-surname" placeholder="Surname" pattern="\w{5,}" required>
+      <label for="delivery-date">Delivery date:</label>
+      <input type="date" name="delivery-date" id="delivery-date" required>
+      <fieldset>
+        <legend>Adress:</legend>
+        <label for="delivery-street">Street name:</label>
+        <input type="text" name="delivery-street" id="delivery-street" placeholder="Street name" pattern="^\\p{L}*$" required>
+        <label for="delivery-house">House number:</label>
+        <input type="number" name="delivery-house" id="delivery-house" min="1" pattern="[1-9]+" required>
+        <label for="delivery-flat-number">Flat number:</label>
+        <input type="text" name="delivery-flat-number" id="delivery-flat-number" pattern="\d+\-\d+" required>
+      </fieldset>
+      <fieldset>
+        <legend>Gift (optional)</legend>
+        <input type="checkbox" name="gift" id="pack-as-gift" value="pack-as-gift">
+        <label for="pack-as-gift">Pack as a gift</label>
+        <input type="checkbox" name="gift" id="add-postcard" value="add-postcard">
+        <label for="add-postcard">Add postcard</label>
+        <input type="checkbox" name="gift" id="discount-2-next-time" value="discount-2-next-time">
+        <label for="discount-2-next-time">Provide 2% discount next time</label>
+        <input type="checkbox" name="gift" id="pen-pencil" value="pen-pencil">
+        <label for="pen-pencil">Branded pen or pencil</label>
+      </fieldset>
+      <button type="submit" name="submit" id="submit">Complete</button>
+    </form>
+  </div>
+</body>
+
+</html>
