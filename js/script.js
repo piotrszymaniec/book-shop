@@ -93,7 +93,6 @@ function updateCart(cartItems = []) {
   const cartContainer = document.querySelector('.cart-container')
   cartContainer.textContent = ''
   const fragment = new DocumentFragment()
-  console.log(cartItems)
   cartItems.forEach(cartItem => {
     fragment.append(createCartElement(cartItem))
     cartContainer.append(fragment)
