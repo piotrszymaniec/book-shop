@@ -5,3 +5,8 @@ const deliveryDate = tomorrow.toISOString().split('T')[0]
 
 deliveryDateField.setAttribute('min', deliveryDate)
 deliveryDateField.setAttribute('value', deliveryDate)
+const order = sessionStorage.getItem('CLIENT_ORDER')
+
+if (order) {
+  const clientOrder = JSON.parse(order)
+}

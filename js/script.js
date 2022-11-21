@@ -3,6 +3,7 @@ app.setAttribute("id", "app")
 document.body.append(app)
 const cartItems = []
 const cartIndex = 0;
+sessionStorage.setItem('CLIENT_ORDER', '')
 
 function createElement(tag, className = '', content = '') {
   const el = document.createElement(tag)
@@ -109,11 +110,6 @@ function removeFromCart(id) {
 
 }
 
-function saveOrder(array) {
-  const id = "CLIENT_ORDER"
-  localStorage.setItem(id, JSON.stringify(array))
-}
-
 function createCart(cartItems) {
   const fragment = new DocumentFragment()
   const cart = createElement('div', 'cart', '')
@@ -127,7 +123,6 @@ function createCart(cartItems) {
     if (cartItems.length == 0) {
 
     } else {
-      saveOrder(cartItems)
       window.location.href = './order.html'
     }
   })
@@ -145,7 +140,9 @@ function updateCart(cartItems = []) {
   if (cartItems.length > 0) {
     //turn off cart confirm button    
     confirmBtn.removeAttribute('disabled')
+    sessionStorage.setItem('CLIENT_ORDER', JSON.stringify(cartItems))
   } else {
+    sessionStorage.removeItem('CLIENT_ORDER')
     confirmBtn.setAttribute('disabled', '')
   }
   cartItems.forEach(cartItem => {
