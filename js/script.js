@@ -26,7 +26,7 @@ function createPopup(content) {
   const el = createElement('div', 'popup hidden description')
   const descr = createElement('div', 'description-content', content)
   const closeCrossBtn = createElement('button', 'close-popup-x', '✖')
-  const closeBtn = createElement('button', 'close-popup-close', 'close')
+  const closeBtn = createElement('button', 'close-popup-button', 'close')
   closeBtn.addEventListener('click', () => {
     el.classList.add('hidden')
   })
@@ -51,6 +51,7 @@ function createBookElement({ author, imageLink, title, price, description }) {
   const showMoreBtn = createElement('button', 'show-more', 'Show more...')
   showMoreBtn.addEventListener('click', () => {
     popup.classList.remove('hidden')
+    popup.querySelector('.close-popup-button').focus()
     console.log('show more clicked')
   })
   bookContainer.append(showMoreBtn)
