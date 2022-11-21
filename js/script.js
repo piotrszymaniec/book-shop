@@ -48,7 +48,7 @@ function createCartElement({ id, author, title, price }) {
   cartElement.append(createElement('div', 'author', author))
   cartElement.append(createElement('div', 'title', title))
   cartElement.append(createElement('div', 'price', price))
-  const removeBtn = createElement('button', 'remove-from-cart', 'Remove')
+  const removeBtn = createElement('button', 'remove-from-cart', '✖')
   removeBtn.addEventListener('click', () => {
     removeFromCart(id)
     updateCart(cartItems)

@@ -36,7 +36,15 @@ html {
 .cart .book .title {
   font-size: 1em;
   font-weight: 500;
+  order: 1;
+}
+.cart .book .author {
+  order: 2;
 }
 .cart .book .price {
   padding: 1em;
+  order: 3;
+}
+.cart .book .remove-from-cart {
+  order: 4;
 }/*# sourceMappingURL=style.css.map */

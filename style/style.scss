@@ -40,14 +40,21 @@ html {
     .title {
       font-size: 1em;
       font-weight: 500;
+      order: 1;
       // min-width: fit-content;
+    }
 
+    .author {
+      order: 2;
     }
 
     .price {
       padding: 1em;
+      order: 3;
+    }
+
+    .remove-from-cart {
+      order: 4;
     }
   }
-
-  .cart-container {}
 }
