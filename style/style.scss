@@ -1,0 +1,16 @@
+html {
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.book {
+  margin-bottom: 5rem;
+
+  .title {
+    font-size: 1.5em;
+  }
+
+  .price::after {
+    content: '$';
+  }
+}

@@ -1,1 +1,14 @@
-/*# sourceMappingURL=style.css.map */
+html {
+  font-size: 18px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.book {
+  margin-bottom: 5rem;
+}
+.book .title {
+  font-size: 1.5em;
+}
+.book .price::after {
+  content: "$";
+}/*# sourceMappingURL=style.css.map */
