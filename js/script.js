@@ -94,7 +94,7 @@ function createCart(cartItems) {
   const cartItemsContainer = createElement('div', 'cart-container', 'Empty')
   cart.append(createElement('h2', 'cart-title', 'Cart'))
   fragment.append(cart)
-  fragment.append(cartItemsContainer)
+  cart.append(cartItemsContainer)
   return fragment
   parentEl.append(fragment)
   updateCart(cartItems)
