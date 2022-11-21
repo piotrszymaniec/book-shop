@@ -3,6 +3,11 @@ html {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+#app {
+  display: flex;
+  flex-direction: row;
+}
+
 .book {
   margin-bottom: 5rem;
 
@@ -10,7 +15,25 @@ html {
     font-size: 1.5em;
   }
 
-  .price::after {
-    content: '$';
+
+  .price {
+    font-weight: 700;
+
+    &::after {
+      content: '$';
+    }
+  }
+}
+
+.cart {
+
+  min-width: 30%;
+
+  .book {
+    margin-bottom: 1rem;
+
+    .title {
+      font-size: 1em;
+    }
   }
 }
