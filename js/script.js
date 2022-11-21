@@ -21,6 +21,10 @@ function createBookElement({ author, imageLink, title, price, description }) {
   bookContainer.append(createElement('div', 'title', title))
   bookContainer.append(createElement('div', 'price', price))
   bookContainer.append(createElement('div', 'description', description))
+  const showMoreBtn = createElement('button', 'show-more', 'Show more...')
+  showMoreBtn.addEventListener('click', () => { console.log('click') })
+  bookContainer.append(showMoreBtn)
+
   return bookContainer
 }
 
