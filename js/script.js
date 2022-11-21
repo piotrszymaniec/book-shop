@@ -2,6 +2,7 @@ const app = document.createElement('div')
 app.setAttribute("id", "app")
 document.body.append(app)
 const cartItems = []
+const cartIndex = 0;
 
 function createElement(tag, className = '', content = '') {
   const el = document.createElement(tag)
@@ -75,8 +76,9 @@ function addToCart(item, cartItems) {
 }
 
 function removeFromCart(id) {
-  console.log('Removing from cart.')
-  cartItems.splice(id, 1)
+  console.log('Removing from cart', id)
+  const itemIndex = cartItems.findIndex((item) => item.id == id)
+  cartItems.splice(itemIndex, 1)
 }
 
 function createCart(cartItems) {
