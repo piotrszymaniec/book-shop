@@ -33,6 +33,9 @@ button:not(:disabled):hover {
   border: 1px solid #b9b9b9;
   max-width: 560px;
 }
+.book .imgageLink {
+  width: 250px;
+}
 .book button.show-more,
 .book button.add-to-cart {
   padding: 0.3em 1em;
@@ -165,6 +168,12 @@ button:not(:disabled):hover {
 .wrapper form .gift-field {
   display: flex;
   margin-bottom: 0.2em;
+}
+.wrapper form .gift-field input[type=checkbox] {
+  cursor: pointer;
+}
+.wrapper form input[type=radio] {
+  cursor: pointer;
 }
 .wrapper form .invalid {
   border: 2px solid red;
