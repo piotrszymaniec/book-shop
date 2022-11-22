@@ -6,54 +6,65 @@ const deliveryDay = tomorrow.toISOString().split('T')[0]
 
 deliveryDateField.setAttribute('min', deliveryDay)
 deliveryDateField.setAttribute('value', deliveryDay)
-const order = sessionStorage.getItem('CLIENT_ORDER')
+const orderedItems = sessionStorage.getItem('CLIENT_ORDER')
 
-if (order) {
-  const clientOrder = JSON.parse(order)
-}
 
-let validationResult = true
+
 const submitBtn = document.querySelector('#submit')
 submitBtn.setAttribute('disabled', '')
 
 //validation
+const form = document.querySelector("form")
 const clientName = document.querySelector("#client-name")
-validationResult = validationResult && validateField(clientName, /\w{4,}/)
 const clientSurname = document.querySelector("#client-surname")
-validationResult = validationResult && validateField(clientSurname, /\w{5,}/)
-
 const deliveryStreet = document.querySelector("#delivery-street")
-validationResult = validationResult && validateField(deliveryStreet, /^[^\W\d_]+\.?(?:[- '’][^\W\d_]+\.?)*$/)
 const deliveryHouse = document.querySelector("#delivery-house")
-
 const deliveryFlat = document.querySelector("#delivery-flat-number")
-validationResult = validationResult && validateField(deliveryFlat, /\d+\[-]{,1}\d+/)
-// const packAs = document.querySelector("")
 
-
+let validationResult = true
 function validateField(field, pattern) {
-  field.addEventListener('blur', () => {
-    // let msgEl = createElement('div', 'validation-message', 'The field is invalid')
-    const result = pattern.test(field.value)
-    console.log(field, ' result ', result);
+  field.addEventListener('blur', ({ target }) => {
+    const result = pattern.test(target.value)
+    updateValidationResult(result)
     if (!result) {
-      field.classList.add("invalid")
-      // insertAfter(msgEl, field)
-      // msgEl = document.body.insertt("afterend",);
+      target.classList.add("invalid")
     } else {
-      field.classList.remove("invalid")
-      // document.body.removeChild(msgEl)
+      target.classList.remove("invalid")
     }
     return result
   })
 }
 
-if (validationResult) {
-  submitBtn.removeAttribute('disabled')
+function updateValidationResult(value) {
+  validationResult = validationResult && value
+  if (validationResult) {
+    submitBtn.removeAttribute('disabled')
+  }
+}
+const v1 = validateField(clientName, /\w{4,}/)
+const v2 = validateField(clientSurname, /\w{5,}/)
+const v3 = validateField(deliveryStreet, /^[^\W\d_]{5,}\.?(?:[- '’][^\W\d_]{5,}\.?)*$/)
+const v4 = validateField(deliveryHouse, /[1-9]+[\d]*/)
+const v5 = validateField(deliveryFlat, /\d+[\-]{0,1}\d*/)
+
+
+if (orderedItems) {
+  const orderElement = document.querySelector('.order')
+  const clientOrder = JSON.parse(orderedItems)
+  const fragment = new DocumentFragment()
+  clientOrder.forEach(element => {
+    fragment.append(createOrderElement(element))
+  });
+  orderElement.append(fragment)
 }
 
-// fields.array.forEach(element => {
-//   element.addEventListener('blur', () => {
-//     validateField(element,)
-//   })
-// });
+
+function createOrderElement({ author, title, price }) {
+  const cartElement = createElement('div', 'order-item')
+  // cartElement.append(createImg('imageLink', imageLink, title))
+  cartElement.append(createElement('div', 'title', title))
+  cartElement.append(createElement('div', 'author', author))
+  cartElement.append(createElement('div', 'price', price))
+
+  return cartElement
+}

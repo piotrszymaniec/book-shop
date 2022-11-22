@@ -1,11 +1,19 @@
 html {
   font-size: 18px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #e5f3ff;
 }
 
 #app {
   display: flex;
   flex-direction: row;
+  background: #e5f3ff;
+  justify-content: space-between;
+}
+
+button:not(:disabled):hover {
+  background-color: #e2e2e2;
+  cursor: pointer;
 }
 
 .hidden {
@@ -14,11 +22,32 @@ html {
 
 .book-container {
   padding: 1em;
+
 }
 
 .book {
   position: relative;
   margin-bottom: 5rem;
+  background: white;
+  padding: 2em;
+  border-radius: 22px;
+  border: 1px solid #b9b9b9;
+  max-width: 560px;
+
+  .imgageLink {
+    width: 250px;
+  }
+
+  button.show-more,
+  button.add-to-cart {
+    padding: 0.3em 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+    border-radius: 15px;
+    border-width: 2px;
+    /* background-color: #fffe00; */
+    border-color: grey;
+  }
 
   .title {
     font-size: 1.5em;
@@ -28,10 +57,18 @@ html {
     position: absolute;
     z-index: 10;
     background-color: aliceblue;
-
-    bottom: 30px;
-    left: 50px;
+    bottom: 91px;
+    left: 104px;
+    border: 1px solid gray;
+    opacity: 0.95;
+    border-radius: 10px;
     padding: 1rem;
+    margin-right: 1em;
+
+    .description-content {
+      padding: 1em 1em 1em 0;
+      font-size: 0.9em;
+    }
 
     .close-popup-x {
       display: flex;
@@ -49,16 +86,29 @@ html {
 }
 
 .cart {
+
   padding-left: 1em;
-  border-left: 1px solid black;
   min-width: 30%;
-  background-color: #ffe6b2;
+  padding-left: 1em;
+  position: fixed;
+  background-color: white;
+  right: 0;
+  padding: 2em;
+  border-bottom-left-radius: 20px;
 
   .cart-total-sum::after {
     content: '$';
   }
 
-
+  button.cart-confirm {
+    padding: 0.3em 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+    border-radius: 15px;
+    border-width: 2px;
+    /* background-color: #fffe00; */
+    border-color: grey;
+  }
 
   .book {
     background-color: white;
@@ -69,6 +119,7 @@ html {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    border-radius: 0;
 
     .title::before,
     .title::after {
@@ -97,16 +148,85 @@ html {
   }
 }
 
-form {
-  // input:invalid {
-  //   border: 1px solid red;
-  // }
+//order and delivery
 
-  .invalid {
-    border: 2px solid red;
+.wrapper {
+  width: 609px;
+  margin: 0 auto;
+
+  h1 {
+    text-align: center;
   }
 
-  .validation-message {
-    color: red;
+  .order {
+    margin-bottom: 3em;
+
+    .order-item {
+      border: 1px solid;
+      margin-bottom: 10px;
+      background-color: #ffffff;
+      padding: 0.5em 1em;
+      flex-direction: row;
+      display: flex;
+      justify-content: space-between;
+
+      .title {
+        font-weight: 500;
+      }
+
+      .price::after {
+        content: '$';
+      }
+    }
+  }
+
+  form {
+    // input:invalid {
+    //   border: 1px solid red;
+    // }
+    text-align: center;
+    background: white;
+    border: 1px solid black;
+    padding: 2em 2em;
+
+    fieldset {
+      margin-bottom: 0.2em;
+      padding: 1em;
+    }
+
+    .field {
+      max-width: 70%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.2em;
+    }
+
+    .gift-field {
+      display: flex;
+      margin-bottom: 0.2em;
+
+      input[type="checkbox"] {
+        cursor: pointer;
+      }
+    }
+
+    input[type="radio"] {
+      cursor: pointer;
+    }
+
+    .invalid {
+      border: 2px solid red;
+    }
+
+    .validation-message {
+      color: red;
+    }
+
+    #submit {
+      margin-top: 1em;
+      padding: 1em 2em;
+      font-size: inherit;
+
+    }
   }
 }
