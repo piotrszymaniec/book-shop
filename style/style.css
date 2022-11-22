@@ -8,6 +8,12 @@ html {
   display: flex;
   flex-direction: row;
   background: #e5f3ff;
+  justify-content: space-between;
+}
+
+button:not(:disabled):hover {
+  background-color: #e2e2e2;
+  cursor: pointer;
 }
 
 .hidden {
@@ -21,6 +27,21 @@ html {
 .book {
   position: relative;
   margin-bottom: 5rem;
+  background: white;
+  padding: 2em;
+  border-radius: 22px;
+  border: 1px solid #b9b9b9;
+  max-width: 560px;
+}
+.book button.show-more,
+.book button.add-to-cart {
+  padding: 0.3em 1em;
+  margin-right: 1em;
+  margin-top: 1em;
+  border-radius: 15px;
+  border-width: 2px;
+  /* background-color: #fffe00; */
+  border-color: grey;
 }
 .book .title {
   font-size: 1.5em;
@@ -29,9 +50,17 @@ html {
   position: absolute;
   z-index: 10;
   background-color: aliceblue;
-  bottom: 30px;
-  left: 50px;
+  bottom: 91px;
+  left: 104px;
+  border: 1px solid gray;
+  opacity: 0.95;
+  border-radius: 10px;
   padding: 1rem;
+  margin-right: 1em;
+}
+.book .popup .description-content {
+  padding: 1em 1em 1em 0;
+  font-size: 0.9em;
 }
 .book .popup .close-popup-x {
   display: flex;
@@ -53,6 +82,15 @@ html {
 .cart .cart-total-sum::after {
   content: "$";
 }
+.cart button.cart-confirm {
+  padding: 0.3em 1em;
+  margin-right: 1em;
+  margin-top: 1em;
+  border-radius: 15px;
+  border-width: 2px;
+  /* background-color: #fffe00; */
+  border-color: grey;
+}
 .cart .book {
   background-color: white;
   padding: 1em 1em;
@@ -62,6 +100,7 @@ html {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  border-radius: 0;
 }
 .cart .book .title::before,
 .cart .book .title::after {
@@ -83,15 +122,13 @@ html {
 }
 
 .wrapper {
-  max-width: 80%;
+  width: 609px;
   margin: 0 auto;
 }
 .wrapper h1 {
   text-align: center;
 }
 .wrapper .order {
-  margin: 0 auto;
-  max-width: 80%;
   margin-bottom: 3em;
 }
 .wrapper .order .order-item {
@@ -100,7 +137,6 @@ html {
   background-color: #ffffff;
   padding: 0.5em 1em;
   flex-direction: row;
-  gap: 21px;
   display: flex;
   justify-content: space-between;
 }
@@ -137,6 +173,7 @@ html {
   color: red;
 }
 .wrapper form #submit {
+  margin-top: 1em;
   padding: 1em 2em;
   font-size: inherit;
 }/*# sourceMappingURL=style.css.map */
