@@ -20,7 +20,7 @@ function createElement(tag, className = '', content = '') {
 
 function createImg(className, src, altName) {
   const imgEl = createElement('img', className)
-  imgEl.setAttribute('src', './img/' + src)
+  imgEl.setAttribute('src', src)
   imgEl.setAttribute('draggable', 'true')
   imgEl.setAttribute('alt', altName + 'book image')
   return imgEl
