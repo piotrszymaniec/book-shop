@@ -6,11 +6,9 @@ const deliveryDay = tomorrow.toISOString().split('T')[0]
 
 deliveryDateField.setAttribute('min', deliveryDay)
 deliveryDateField.setAttribute('value', deliveryDay)
-const order = sessionStorage.getItem('CLIENT_ORDER')
+const orderedItems = sessionStorage.getItem('CLIENT_ORDER')
 
-if (order) {
-  const clientOrder = JSON.parse(order)
-}
+
 
 const submitBtn = document.querySelector('#submit')
 submitBtn.setAttribute('disabled', '')
@@ -48,3 +46,25 @@ const v2 = validateField(clientSurname, /\w{5,}/)
 const v3 = validateField(deliveryStreet, /^[^\W\d_]{5,}\.?(?:[- '’][^\W\d_]{5,}\.?)*$/)
 const v4 = validateField(deliveryHouse, /[1-9]+[\d]*/)
 const v5 = validateField(deliveryFlat, /\d+[\-]{0,1}\d*/)
+
+
+if (orderedItems) {
+  const orderElement = document.querySelector('.order')
+  const clientOrder = JSON.parse(orderedItems)
+  const fragment = new DocumentFragment()
+  clientOrder.forEach(element => {
+    fragment.append(createOrderElement(element))
+  });
+  orderElement.append(fragment)
+}
+
+
+function createOrderElement({ author, title, price }) {
+  const cartElement = createElement('div', 'order-item')
+  // cartElement.append(createImg('imageLink', imageLink, title))
+  cartElement.append(createElement('div', 'title', title))
+  cartElement.append(createElement('div', 'author', author))
+  cartElement.append(createElement('div', 'price', price))
+
+  return cartElement
+}

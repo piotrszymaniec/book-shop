@@ -1,11 +1,13 @@
 html {
   font-size: 18px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #e5f3ff;
 }
 
 #app {
   display: flex;
   flex-direction: row;
+  background: #e5f3ff;
 }
 
 .hidden {
@@ -97,16 +99,79 @@ html {
   }
 }
 
-form {
-  // input:invalid {
-  //   border: 1px solid red;
-  // }
+//order and delivery
 
-  .invalid {
-    border: 2px solid red;
+.wrapper {
+  max-width: 80%;
+  margin: 0 auto;
+
+  h1 {
+    text-align: center;
   }
 
-  .validation-message {
-    color: red;
+  .order {
+    margin: 0 auto;
+    max-width: 80%;
+    margin-bottom: 3em;
+
+    .order-item {
+      border: 1px solid;
+      margin-bottom: 10px;
+      background-color: #ffffff;
+      padding: 0.5em 1em;
+      flex-direction: row;
+      gap: 21px;
+      display: flex;
+      justify-content: space-between;
+
+      .title {
+        font-weight: 500;
+      }
+
+      .price::after {
+        content: '$';
+      }
+    }
+  }
+
+  form {
+    // input:invalid {
+    //   border: 1px solid red;
+    // }
+    text-align: center;
+    background: white;
+    border: 1px solid black;
+    padding: 2em 2em;
+
+    fieldset {
+      margin-bottom: 0.2em;
+      padding: 1em;
+    }
+
+    .field {
+      max-width: 70%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.2em;
+    }
+
+    .gift-field {
+      display: flex;
+      margin-bottom: 0.2em;
+    }
+
+    .invalid {
+      border: 2px solid red;
+    }
+
+    .validation-message {
+      color: red;
+    }
+
+    #submit {
+      padding: 1em 2em;
+      font-size: inherit;
+
+    }
   }
 }

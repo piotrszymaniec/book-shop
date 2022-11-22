@@ -1,11 +1,13 @@
 html {
   font-size: 18px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #e5f3ff;
 }
 
 #app {
   display: flex;
   flex-direction: row;
+  background: #e5f3ff;
 }
 
 .hidden {
@@ -80,9 +82,61 @@ html {
   order: 4;
 }
 
-form .invalid {
+.wrapper {
+  max-width: 80%;
+  margin: 0 auto;
+}
+.wrapper h1 {
+  text-align: center;
+}
+.wrapper .order {
+  margin: 0 auto;
+  max-width: 80%;
+  margin-bottom: 3em;
+}
+.wrapper .order .order-item {
+  border: 1px solid;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  padding: 0.5em 1em;
+  flex-direction: row;
+  gap: 21px;
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper .order .order-item .title {
+  font-weight: 500;
+}
+.wrapper .order .order-item .price::after {
+  content: "$";
+}
+.wrapper form {
+  text-align: center;
+  background: white;
+  border: 1px solid black;
+  padding: 2em 2em;
+}
+.wrapper form fieldset {
+  margin-bottom: 0.2em;
+  padding: 1em;
+}
+.wrapper form .field {
+  max-width: 70%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.2em;
+}
+.wrapper form .gift-field {
+  display: flex;
+  margin-bottom: 0.2em;
+}
+.wrapper form .invalid {
   border: 2px solid red;
 }
-form .validation-message {
+.wrapper form .validation-message {
   color: red;
+}
+.wrapper form #submit {
+  padding: 1em 2em;
+  font-size: inherit;
 }/*# sourceMappingURL=style.css.map */
