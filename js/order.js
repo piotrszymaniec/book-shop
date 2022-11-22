@@ -12,48 +12,39 @@ if (order) {
   const clientOrder = JSON.parse(order)
 }
 
-let validationResult = true
 const submitBtn = document.querySelector('#submit')
 submitBtn.setAttribute('disabled', '')
 
 //validation
+const form = document.querySelector("form")
 const clientName = document.querySelector("#client-name")
-validationResult = validationResult && validateField(clientName, /\w{4,}/)
 const clientSurname = document.querySelector("#client-surname")
-validationResult = validationResult && validateField(clientSurname, /\w{5,}/)
-
 const deliveryStreet = document.querySelector("#delivery-street")
-validationResult = validationResult && validateField(deliveryStreet, /^[^\W\d_]+\.?(?:[- '’][^\W\d_]+\.?)*$/)
 const deliveryHouse = document.querySelector("#delivery-house")
-
 const deliveryFlat = document.querySelector("#delivery-flat-number")
-validationResult = validationResult && validateField(deliveryFlat, /\d+\[-]{,1}\d+/)
-// const packAs = document.querySelector("")
 
-
+let validationResult = true
 function validateField(field, pattern) {
-  field.addEventListener('blur', () => {
-    // let msgEl = createElement('div', 'validation-message', 'The field is invalid')
-    const result = pattern.test(field.value)
-    console.log(field, ' result ', result);
+  field.addEventListener('blur', ({ target }) => {
+    const result = pattern.test(target.value)
+    updateValidationResult(result)
     if (!result) {
-      field.classList.add("invalid")
-      // insertAfter(msgEl, field)
-      // msgEl = document.body.insertt("afterend",);
+      target.classList.add("invalid")
     } else {
-      field.classList.remove("invalid")
-      // document.body.removeChild(msgEl)
+      target.classList.remove("invalid")
     }
     return result
   })
 }
 
-if (validationResult) {
-  submitBtn.removeAttribute('disabled')
+function updateValidationResult(value) {
+  validationResult = validationResult && value
+  if (validationResult) {
+    submitBtn.removeAttribute('disabled')
+  }
 }
-
-// fields.array.forEach(element => {
-//   element.addEventListener('blur', () => {
-//     validateField(element,)
-//   })
-// });
+const v1 = validateField(clientName, /\w{4,}/)
+const v2 = validateField(clientSurname, /\w{5,}/)
+const v3 = validateField(deliveryStreet, /^[^\W\d_]{5,}\.?(?:[- '’][^\W\d_]{5,}\.?)*$/)
+const v4 = validateField(deliveryHouse, /[1-9]+[\d]*/)
+const v5 = validateField(deliveryFlat, /\d+[\-]{0,1}\d*/)
