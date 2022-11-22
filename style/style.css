@@ -78,9 +78,13 @@ button:not(:disabled):hover {
 
 .cart {
   padding-left: 1em;
-  border-left: 1px solid black;
   min-width: 30%;
-  background-color: #ffe6b2;
+  padding-left: 1em;
+  position: fixed;
+  background-color: white;
+  right: 0;
+  padding: 2em;
+  border-bottom-left-radius: 20px;
 }
 .cart .cart-total-sum::after {
   content: "$";
